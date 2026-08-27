@@ -40,7 +40,20 @@ function Stars({ count = 1500 }) {
   );
 }
 
+import useIsMobile from '../hooks/useIsMobile';
+
 export default function ParticleBackground() {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) {
+    // Return a simple CSS gradient/pattern for mobile to save GPU/CPU
+    return (
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-30">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent-pink/5 via-bg-primary to-bg-primary" />
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-0 pointer-events-none opacity-60">
       <Canvas camera={{ position: [0, 0, 1] }}>
