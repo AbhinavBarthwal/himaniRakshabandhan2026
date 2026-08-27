@@ -5,10 +5,30 @@
 @tailwind utilities;
 
 @layer base {
+  /* dvh = dynamic viewport height — fills the real visible area on Safari/Chrome mobile,
+     accounting for the collapsing address bar. Falls back to the --vh custom property
+     set by the JS snippet below for older browsers. */
+  :root {
+    --vh: 1vh;
+  }
+
+  html {
+    height: -webkit-fill-available;
+    height: 100%;
+  }
+
   body {
     @apply bg-bg-primary text-text-primary;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
+    /* Respect iPhone notch / home indicator */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 
   h1, h2, h3, h4, h5, h6 {

@@ -21,7 +21,8 @@ export default function Hero() {
   return (
     <section 
       ref={ref}
-      className="relative h-[120vh] w-full overflow-hidden flex flex-col items-center justify-center pt-20"
+      className="relative w-full overflow-hidden flex flex-col items-center justify-center pt-20"
+      style={{ height: 'calc(var(--vh, 1vh) * 120)' }}
     >
       {/* Background Layer */}
       <motion.div 
