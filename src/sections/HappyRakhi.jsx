@@ -18,12 +18,14 @@ const RAIN_IMAGES = [
 ];
 
 // Each raindrop is a photo card falling from top
-function RaindropPhoto({ src, style, delay, isMobile }) {
+function RaindropPhoto({ src, style, delay, duration, isMobile }) {
   const size = isMobile
     ? Math.random() * 60 + 70   // 70–130px on mobile
     : Math.random() * 80 + 100; // 100–180px on desktop
 
   const rotate = (Math.random() - 0.5) * 40;
+  // Start each drop at a different height so screen is always full
+  const startY = `${-10 - (delay / duration) * 120}vh`;
 
   return (
     <motion.div
@@ -34,14 +36,14 @@ function RaindropPhoto({ src, style, delay, isMobile }) {
         height: size,
         rotate,
       }}
-      initial={{ y: '-10vh', opacity: 0 }}
-      animate={{ y: '110vh', opacity: [0, 1, 1, 0] }}
+      initial={{ y: startY, opacity: 0 }}
+      animate={{ y: '120vh', opacity: [0, 1, 1, 0] }}
       transition={{
-        duration: isMobile ? 3.5 : 4.5,
-        delay,
+        duration,
+        delay: 0,
         ease: 'linear',
         repeat: Infinity,
-        repeatDelay: Math.random() * 3 + 2,
+        repeatDelay: 0,
       }}
     >
       <img
@@ -59,13 +61,19 @@ export default function HappyRakhi() {
   const isInView = useInView(sectionRef, { once: false, margin: '-10% 0px' });
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-  // Generate a stable set of drops
+  // Generate a stable set of drops with per-drop durations
   const drops = useRef(
-    Array.from({ length: isMobile ? 8 : 14 }, (_, i) => ({
-      src: RAIN_IMAGES[i % RAIN_IMAGES.length],
-      left: `${Math.random() * 96}%`,
-      delay: (i / (isMobile ? 8 : 14)) * 4,
-    }))
+    Array.from({ length: isMobile ? 10 : 16 }, (_, i) => {
+      const duration = isMobile
+        ? 3 + Math.random() * 2   // 3–5s on mobile
+        : 4 + Math.random() * 3;  // 4–7s on desktop
+      return {
+        src: RAIN_IMAGES[i % RAIN_IMAGES.length],
+        left: `${(i / (isMobile ? 10 : 16)) * 92 + Math.random() * 5}%`,
+        delay: (i / (isMobile ? 10 : 16)) * duration, // evenly stagger within one cycle
+        duration,
+      };
+    })
   ).current;
 
   return (
@@ -74,12 +82,13 @@ export default function HappyRakhi() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-10 py-20"
     >
       {/* Photo rainfall — only active when visible */}
-      {isInView && drops.map((drop, i) => (
+      {drops.map((drop, i) => (
         <RaindropPhoto
           key={i}
           src={drop.src}
           style={{ left: drop.left }}
           delay={drop.delay}
+          duration={drop.duration}
           isMobile={isMobile}
         />
       ))}

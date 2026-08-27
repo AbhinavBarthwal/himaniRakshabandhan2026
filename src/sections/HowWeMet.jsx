@@ -43,8 +43,14 @@ export default function HowWeMet() {
           <GlassCard className="max-w-md w-full p-4 pb-10 rotate-2 hover:rotate-0 transition-transform duration-500">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 -rotate-2 w-20 h-6 bg-accent-gold/40 backdrop-blur-md z-20 shadow-sm" />
             
-            <div className="w-full aspect-square bg-gradient-to-br from-accent-gold/20 to-accent-pink/20 rounded-xl flex items-center justify-center border border-white/10 mb-4">
-              <span className="text-8xl drop-shadow-2xl">{content.imagePlaceholder}</span>
+            <div className="w-full aspect-square rounded-xl overflow-hidden border border-white/10 mb-4 relative">
+              {content.image ? (
+                <img src={`/images/${content.image}`} alt="How we met" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-accent-gold/20 to-accent-pink/20 flex items-center justify-center">
+                  <span className="text-8xl drop-shadow-2xl">{content.imagePlaceholder}</span>
+                </div>
+              )}
             </div>
             
             <p className="font-script text-2xl text-center text-text-primary">
