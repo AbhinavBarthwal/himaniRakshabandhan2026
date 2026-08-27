@@ -27,7 +27,7 @@ export default function Hero() {
       <motion.div 
         className="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-luminosity"
         style={{ 
-          backgroundImage: "url('/src/content/images/hero/background.png')",
+          backgroundImage: "url('/images/hero/background.png')",
           y: bgY 
         }}
       />
@@ -69,7 +69,7 @@ export default function Hero() {
         className="absolute bottom-[5vh] md:bottom-[-10vh] left-[55%] md:left-[60%] -translate-x-1/2 w-[95vw] max-w-[600px] h-[60vh] md:h-[80vh] z-20 pointer-events-none"
       >
         <img 
-          src="/src/content/images/hero/himani_cutout.png" 
+          src="/images/hero/himani_cutout.png" 
           alt="Himani" 
           className="w-full h-full object-contain drop-shadow-[0_0_50px_rgba(255,111,145,0.3)] contrast-125 saturate-110"
         />
