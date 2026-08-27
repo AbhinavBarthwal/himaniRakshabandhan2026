@@ -10,6 +10,7 @@ import FoodieGallery from './sections/FoodieGallery';
 import ChitChat from './sections/ChitChat';
 import RandomClicks from './sections/RandomClicks';
 import ThankYou from './sections/ThankYou';
+import HappyRakhi from './sections/HappyRakhi';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <ChitChat />
           <RandomClicks />
           <ThankYou />
+          <HappyRakhi />
         </main>
       </div>
     </SmoothScroll>

@@ -1,13 +1,13 @@
 {
   "eyebrow": "chapter three",
-  "title": "our whole personality is food \ud83c\udf5c",
+  "title": "our whole personality is food 🍜",
   "subtitle": "Every memory somehow has a snack attached to it. Here's the proof.",
   "items": [
-    { "image": "", "caption": "thukpa", "placeholder": "\ud83c\udf5c" },
-    { "image": "", "caption": "momos", "placeholder": "\ud83e\udd5f" },
-    { "image": "", "caption": "ganne ka juice", "placeholder": "\ud83e\udd64" },
-    { "image": "", "caption": "ice cream", "placeholder": "\ud83c\udf66" },
-    { "image": "", "caption": "morning fruits on the ride to college", "placeholder": "\ud83c\udf4e" },
-    { "image": "", "caption": "badam shake", "placeholder": "\ud83e\uddcb" }
+    { "image": "foodie/thukpa.png", "caption": "thukpa", "placeholder": "🍜" },
+    { "image": "foodie/momos.png", "caption": "momos", "placeholder": "🥟" },
+    { "image": "foodie/sugarcanjuice.png", "caption": "ganne ka juice", "placeholder": "🥤" },
+    { "image": "foodie/icecream.png", "caption": "ice cream", "placeholder": "🍦" },
+    { "image": "foodie/fruits.png", "caption": "morning fruits on the ride to college", "placeholder": "🍎" },
+    { "image": "foodie/badam-shake.png", "caption": "badam shake", "placeholder": "🧋" }
   ]
 }
