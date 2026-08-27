@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello Himani 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Caveat:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper: #FFF6EF;
+    --paper-2: #FFEFE2;
+    --ink: #3D1B2E;
+    --pink: #FF6F91;
+    --pink-soft: #FFD3DE;
+    --mango: #FFB84D;
+    --mango-soft: #FFE3B0;
+    --mint: #7FCFB9;
+    --mint-soft: #CFF0E3;
+    --lavender: #B999D9;
+    --lavender-soft: #E8D9F5;
+    --thread-red: #E0435A;
+    --thread-gold: #F2B705;
+    --shadow: rgba(61,27,46,0.14);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  h1,h2{
+    font-family: 'Fredoka', sans-serif;
+    margin: 0;
+    line-height: 1.05;
+  }
+
+  .script{ font-family: 'Caveat', cursive; }
+
+  .eyebrow{
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    color: var(--pink);
+    display: inline-block;
+    transform: rotate(-2deg);
+    margin-bottom: .25rem;
+  }
+
+  section{
+    position: relative;
+    padding: 6rem 6vw 7rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ---------- background dot texture ---------- */
+  .dots{
+    position:absolute; inset:0;
+    background-image: radial-gradient(var(--ink) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    opacity: .05;
+    pointer-events:none;
+  }
+
+  /* ---------- thread signature ---------- */
+  #thread-track{
+    position:absolute;
+    top:0; left: 32px;
+    width: 6px;
+    height: 100%;
+    background: repeating-linear-gradient(180deg, var(--thread-red) 0 10px, var(--thread-gold) 10px 20px);
+    border-radius: 6px;
+    opacity:.55;
+    z-index: 1;
+  }
+  #thread-charm{
+    position:absolute;
+    left: 12px;
+    top: 0;
+    font-size: 2.2rem;
+    z-index: 3;
+    filter: drop-shadow(0 3px 4px var(--shadow));
+    transition: top .05s linear;
+    user-select:none;
+  }
+  @media (max-width: 760px){
+    #thread-track, #thread-charm{ display:none; }
+  }
+
+  /* ---------- reveal animation ---------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- stickers / doodles ---------- */
+  .sticker{
+    position:absolute;
+    font-size: 2rem;
+    z-index: 2;
+    pointer-events:none;
+    filter: drop-shadow(0 2px 3px var(--shadow));
+  }
+
+  /* ---------- hero ---------- */
+  #hero{
+    min-height: 92vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top: 4rem;
+  }
+  .hero-bigword{
+    position:absolute;
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size: clamp(4rem, 18vw, 13rem);
+    color: var(--pink-soft);
+    z-index:0;
+    top: 6%;
+    right: -2%;
+    letter-spacing: -.02em;
+    user-select:none;
+  }
+  #hero h1{
+    position:relative;
+    z-index:2;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    color: var(--ink);
+  }
+  #hero h1 span{ color: var(--pink); }
+  #hero p{
+    position:relative; z-index:2;
+    font-size: 1.25rem;
+    max-width: 32ch;
+    margin-top: 1.2rem;
+  }
+  .scroll-cue{
+    margin-top: 3rem;
+    font-family:'Caveat', cursive;
+    font-size: 1.3rem;
+    color: var(--ink);
+    animation: bob 1.8s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(8px); }
+  }
+
+  /* ---------- chapter headers ---------- */
+  .chapter h2{
+    font-size: clamp(1.8rem, 4.2vw, 3rem);
+    max-width: 18ch;
+  }
+  .chapter-body{
+    font-size: 1.1rem;
+    max-width: 55ch;
+    margin-top: 1.2rem;
+    line-height: 1.6;
+  }
+
+  /* ---------- chapter one: bus ---------- */
+  #met{ background: var(--paper-2); border-radius: 40px; }
+  .bus-wrap{
+    position:relative;
+    margin-top: 3rem;
+    display:flex;
+    justify-content:center;
+  }
+  .bus-bigword{
+    position:absolute;
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size: clamp(3rem, 14vw, 9rem);
+    color: var(--mango-soft);
+    z-index:0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(-4deg);
+    user-select:none;
+  }
+  .polaroid.bus-photo{
+    position:relative;
+    z-index:1;
+    transform: rotate(-3deg);
+  }
+
+  /* ---------- chapter two: got a sister ---------- */
+  #sister{
+    text-align:center;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+  #sister .eyebrow{ display:block; }
+  #sister h2{
+    font-size: clamp(2.2rem, 6.5vw, 4.2rem);
+    max-width: none;
+    cursor: pointer;
+    display:inline-block;
+  }
+  #sister .hint{
+    margin-top:1rem;
+    font-family:'Caveat',cursive;
+    font-size:1.2rem;
+    color:#8a5a68;
+  }
+  #sister p.chapter-body{ margin-left:auto; margin-right:auto; text-align:center; }
+
+  /* ---------- polaroid component ---------- */
+  .polaroid{
+    background:#fff;
+    padding: 14px 14px 46px;
+    border-radius: 6px;
+    box-shadow: 0 10px 24px var(--shadow);
+    display:inline-block;
+    width: 220px;
+  }
+  .polaroid .photo{
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 3px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 3rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .polaroid .tape{
+    position:absolute;
+    top:-10px; left:50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 70px; height: 22px;
+    background: rgba(255,216,120,0.75);
+    box-shadow: 0 2px 4px var(--shadow);
+  }
+  .polaroid figcaption{
+    font-family:'Caveat',cursive;
+    font-size: 1.15rem;
+    text-align:center;
+    margin-top: 10px;
+    color: var(--ink);
+  }
+  .polaroid-note{
+    position:absolute;
+    bottom:6px; right:8px;
+    font-size:.65rem;
+    font-family:'Quicksand',sans-serif;
+    color: rgba(61,27,46,0.35);
+  }
+
+  /* ---------- foodie grid ---------- */
+  .grid{
+    margin-top: 3rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 2.2rem 1.8rem;
+    justify-content:center;
+  }
+  .grid .polaroid:nth-child(odd){ transform: rotate(-4deg); }
+  .grid .polaroid:nth-child(even){ transform: rotate(3deg); }
+  .grid .polaroid:nth-child(3n){ transform: rotate(-2deg); }
+  .grid .polaroid:hover{ transform: rotate(0deg) scale(1.04); transition: transform .25s ease; }
+
+  /* ---------- chit chat ---------- */
+  #chitchat{ background: var(--lavender-soft); border-radius: 40px; }
+  .chat-wrap{
+    margin-top: 3rem;
+    max-width: 460px;
+    margin-left:auto; margin-right:auto;
+    display:flex;
+    flex-direction:column;
+    gap: .9rem;
+  }
+  .bubble{
+    padding: .8rem 1.1rem;
+    border-radius: 20px;
+    max-width: 78%;
+    font-size: 1.02rem;
+    line-height:1.4;
+    box-shadow: 0 4px 10px var(--shadow);
+  }
+  .bubble.them{
+    align-self:flex-start;
+    background:#fff;
+    border-bottom-left-radius: 4px;
+  }
+  .bubble.me{
+    align-self:flex-end;
+    background: var(--pink);
+    color:#fff;
+    border-bottom-right-radius: 4px;
+  }
+  .chat-name{
+    font-family:'Caveat',cursive;
+    font-size:.95rem;
+    opacity:.7;
+    margin: 0 .3rem;
+  }
+
+  /* ---------- random clicks ---------- */
+  #clicks{ position:relative; }
+  .secret-sticker{
+    position:absolute;
+    bottom: 2rem;
+    right: 4vw;
+    font-size: 1.8rem;
+    cursor:pointer;
+    z-index:5;
+    background:none;
+    border:none;
+    filter: drop-shadow(0 2px 3px var(--shadow));
+  }
+  .secret-tooltip{
+    position:absolute;
+    bottom: 4.2rem;
+    right: 3vw;
+    background: var(--ink);
+    color: var(--paper);
+    padding: .7rem 1rem;
+    border-radius: 14px;
+    font-family:'Caveat',cursive;
+    font-size: 1.1rem;
+    max-width: 220px;
+    opacity:0;
+    transform: translateY(10px) scale(.9);
+    transition: all .3s ease;
+    pointer-events:none;
+    z-index:6;
+  }
+  .secret-tooltip.show{
+    opacity:1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* ---------- thank you ---------- */
+  #thankyou{
+    text-align:center;
+    padding-top:7rem;
+    padding-bottom: 8rem;
+  }
+  .bow-btn{
+    background:none;
+    border:none;
+    font-size: 4.5rem;
+    cursor:pointer;
+    margin-top: 1rem;
+    transition: transform .2s ease;
+  }
+  .bow-btn:hover{ transform: scale(1.12) rotate(-4deg); }
+  .bow-hint{
+    display:block;
+    font-family:'Caveat',cursive;
+    font-size:1.1rem;
+    color:#8a5a68;
+    margin-top:.4rem;
+  }
+  footer{
+    text-align:center;
+    font-family:'Caveat',cursive;
+    font-size:1.1rem;
+    color:#8a5a68;
+    padding: 2rem 1rem 3rem;
+  }
+
+  /* ---------- heart burst & confetti ---------- */
+  .fx{
+    position:fixed;
+    pointer-events:none;
+    z-index: 999;
+    font-size: 1.6rem;
+    animation: fly 1.4s ease-out forwards;
+  }
+  @keyframes fly{
+    0%{ transform: translate(0,0) scale(.6) rotate(0deg); opacity: 1; }
+    100%{ transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(var(--rot)); opacity: 0; }
+  }
+
+  /* focus visibility */
+  button:focus-visible, [tabindex]:focus-visible{
+    outline: 3px solid var(--mint);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 640px){
+    section{ padding: 4.5rem 6vw 5rem; }
+    .polaroid{ width: 46vw; max-width: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="thread-track"></div>
+<div id="thread-charm">🪢</div>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="dots"></div>
+  <div class="hero-bigword" aria-hidden="true">SIS</div>
+  <span class="eyebrow reveal">a little something for</span>
+  <h1 class="reveal">Hello, <span>Himani</span> 👋</h1>
+  <p class="reveal">This one's just for you. No occasion is complete without a whole website, obviously. Scroll down — I made you a thing.</p>
+  <span class="scroll-cue reveal">keep scrolling, there's more ↓</span>
+</section>
+
+<!-- ============ CHAPTER 1: HOW WE MET ============ -->
+<section id="met" class="chapter">
+  <div class="dots"></div>
+  <span class="sticker reveal" style="top:2rem; left:4%;">✨</span>
+  <span class="eyebrow reveal">chapter one</span>
+  <h2 class="reveal">That day on the college bus 🚌</h2>
+  <p class="chapter-body reveal">
+    It started on the college bus — a random seat, a randomer conversation, and by the time the ride ended we'd basically already decided we were going to be trouble together.
+    <em>(psst — swap this line for the real story, you know it better than me!)</em>
+  </p>
+  <div class="bus-wrap">
+    <div class="bus-bigword reveal" aria-hidden="true">BUS!</div>
+    <figure class="polaroid bus-photo reveal">
+      <div class="tape"></div>
+      <div class="photo" style="background:linear-gradient(135deg,var(--mango-soft),var(--pink-soft));">🚌</div>
+      <figcaption>seat number: destiny</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 2: I GOT A SISTER ============ -->
+<section id="sister" class="chapter">
+  <div class="dots"></div>
+  <span class="sticker reveal" style="top:1rem; left:10%;">💫</span>
+  <span class="sticker reveal" style="top:3rem; right:8%;">🎀</span>
+  <span class="eyebrow reveal">chapter two</span>
+  <h2 id="sister-heading" class="reveal" role="button" tabindex="0" aria-label="Tap for a little surprise">
+    and just like that... I got a sister 😭💕
+  </h2>
+  <span class="hint reveal">(go on, tap it)</span>
+  <p class="chapter-body reveal">Not related by blood — related by chaos, chai, inside jokes nobody else finds funny, and choosing each other on purpose, every single day.</p>
+</section>
+
+<!-- ============ CHAPTER 3: FOODIE DIARIES ============ -->
+<section id="foodie" class="chapter">
+  <div class="dots"></div>
+  <span class="eyebrow reveal">chapter three</span>
+  <h2 class="reveal">our whole personality is food 🍜</h2>
+  <p class="chapter-body reveal">Every memory somehow has a snack attached to it. Here's the proof. <em>(swap these six cards for your actual food pics!)</em></p>
+  <div class="grid">
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--mint-soft),var(--mango-soft));">🍜</div><figcaption>3am maggi run</figcaption><span class="polaroid-note">add photo</span></figure>
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--pink-soft),var(--lavender-soft));">🥟</div><figcaption>the pani puri incident</figcaption><span class="polaroid-note">add photo</span></figure>
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--mango-soft),var(--mint-soft));">☕</div><figcaption>cafe hopping champions</figcaption><span class="polaroid-note">add photo</span></figure>
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--lavender-soft),var(--pink-soft));">🎂</div><figcaption>birthday cake, obviously</figcaption><span class="polaroid-note">add photo</span></figure>
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--mint-soft),var(--lavender-soft));">🌮</div><figcaption>street food or nothing</figcaption><span class="polaroid-note">add photo</span></figure>
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--pink-soft),var(--mango-soft));">🍦</div><figcaption>dessert is a food group</figcaption><span class="polaroid-note">add photo</span></figure>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 4: CHIT CHAT ============ -->
+<section id="chitchat" class="chapter">
+  <div class="dots"></div>
+  <span class="eyebrow reveal">chapter four</span>
+  <h2 class="reveal">our chats: a highlight reel 💬</h2>
+  <p class="chapter-body reveal">A very scientific, very random sample. <em>(swap these bubbles for real screenshots or quotes whenever you want!)</em></p>
+  <div class="chat-wrap">
+    <div class="bubble them reveal">okay but did you eat today or are we ignoring that again</div>
+    <div class="bubble me reveal">...next question</div>
+    <div class="bubble them reveal">sending you a voice note that's just me laughing for 40 seconds</div>
+    <div class="bubble me reveal">iconic behaviour honestly</div>
+    <div class="bubble them reveal">come over, I made too much food again</div>
+    <div class="bubble me reveal">omw, don't start without me 🏃‍♀️</div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 5: RANDOM CLICKS ============ -->
+<section id="clicks" class="chapter">
+  <div class="dots"></div>
+  <span class="eyebrow reveal">chapter five</span>
+  <h2 class="reveal">just... us, being us 📸</h2>
+  <p class="chapter-body reveal">No theme, no filter, no notes. <em>(this whole row is begging for your actual candid photos)</em></p>
+  <div class="grid">
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--pink-soft),var(--mint-soft));">🤳</div><figcaption>mid-laugh, as usual</figcaption><span class="polaroid-note">add photo</span></figure>
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--mango-soft),var(--lavender-soft));">🚗</div><figcaption>random car selfie</figcaption><span class="polaroid-note">add photo</span></figure>
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--lavender-soft),var(--mint-soft));">🎉</div><figcaption>some random tuesday</figcaption><span class="polaroid-note">add photo</span></figure>
+    <figure class="polaroid reveal"><div class="tape"></div><div class="photo" style="background:linear-gradient(135deg,var(--mint-soft),var(--pink-soft));">🐣</div><figcaption>unexplainable, honestly</figcaption><span class="polaroid-note">add photo</span></figure>
+  </div>
+  <button class="secret-sticker reveal" id="secretSticker" aria-label="a tiny secret sticker">🐱</button>
+  <div class="secret-tooltip" id="secretTooltip">shh, you found it 🤫<br>secret decree: you are legally my sister forever now, no returns no exchanges.</div>
+</section>
+
+<!-- ============ THANK YOU ============ -->
+<section id="thankyou">
+  <div class="dots"></div>
+  <span class="eyebrow reveal">the end (for now)</span>
+  <h2 class="reveal">thank you for being there — bas, byeee! 🎀</h2>
+  <p class="chapter-body reveal" style="margin-left:auto;margin-right:auto;">
+    Happy Raksha Bandhan, Himani. Thank you for every bus ride, every 3am snack run, every voice note, every random Tuesday. Here's to more of all of it.
+  </p>
+  <button class="bow-btn" id="bowBtn" aria-label="tap the bow for a surprise">🎀</button>
+  <span class="bow-hint">(one more tap for luck)</span>
+</section>
+
+<footer>made with way too much love, one very long scroll at a time 🧵</footer>
+
+<script>
+  // ---------- scroll reveal ----------
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((entry, i)=>{
+      if(entry.isIntersecting){
+        entry.target.style.transitionDelay = (i % 5) * 70 + 'ms';
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ---------- thread charm follows scroll ----------
+  const charm = document.getElementById('thread-charm');
+  const track = document.getElementById('thread-track');
+  function updateCharm(){
+    const trackHeight = track.offsetHeight;
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+    const top = Math.min(Math.max(progress, 0), 1) * (trackHeight - 40);
+    charm.style.top = top + 'px';
+  }
+  window.addEventListener('scroll', ()=> requestAnimationFrame(updateCharm));
+  window.addEventListener('resize', updateCharm);
+  updateCharm();
+
+  // ---------- fx helper: little particles flying out from a point ----------
+  function burst(x, y, glyphs, count){
+    for(let i=0;i<count;i++){
+      const el = document.createElement('div');
+      el.className = 'fx';
+      el.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
+      const angle = Math.random()*Math.PI*2;
+      const dist = 60 + Math.random()*120;
+      el.style.setProperty('--dx', Math.cos(angle)*dist + 'px');
+      el.style.setProperty('--dy', (Math.sin(angle)*dist - 40) + 'px');
+      el.style.setProperty('--rot', (Math.random()*80-40) + 'deg');
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      document.body.appendChild(el);
+      setTimeout(()=> el.remove(), 1500);
+    }
+  }
+
+  // ---------- easter egg 1: heart burst on "got a sister" heading ----------
+  const sisterHeading = document.getElementById('sister-heading');
+  function triggerSisterBurst(e){
+    const rect = sisterHeading.getBoundingClientRect();
+    burst(rect.left + rect.width/2, rect.top + rect.height/2, ['💕','💖','✨','🎀','😭'], 14);
+  }
+  sisterHeading.addEventListener('click', triggerSisterBurst);
+  sisterHeading.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); triggerSisterBurst(); }
+  });
+
+  // ---------- easter egg 2: hidden sticker tooltip ----------
+  const sticker = document.getElementById('secretSticker');
+  const tooltip = document.getElementById('secretTooltip');
+  sticker.addEventListener('click', ()=>{
+    tooltip.classList.toggle('show');
+  });
+
+  // ---------- easter egg 3: bow celebration (tap twice) ----------
+  const bowBtn = document.getElementById('bowBtn');
+  let bowTaps = 0;
+  bowBtn.addEventListener('click', ()=>{
+    bowTaps++;
+    const rect = bowBtn.getBoundingClientRect();
+    burst(rect.left + rect.width/2, rect.top, ['🎉','🎀','✨','🌸','💛'], 10);
+    if(bowTaps >= 2){
+      for(let i=0;i<30;i++){
+        setTimeout(()=>{
+          burst(Math.random()*window.innerWidth, -20, ['🎉','🎀','✨','🌸','💛','💕'], 1);
+        }, i*40);
+      }
+      bowTaps = 0;
+    }
+  });
+</script>
+
+</body>
+</html>

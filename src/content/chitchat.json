@@ -1,0 +1,9 @@
+{
+  "eyebrow": "chapter four",
+  "title": "our chats: a highlight reel \ud83d\udcac",
+  "subtitle": "A very scientific, very random sample.",
+  "messages": [
+    { "sender": "ABhi", "text": "when we say good night or bye bye", "isMe": true },
+    { "sender": "Himani", "text": "tata - like tata namak, tata biscut", "isMe": false }
+  ]
+}

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-text-primary;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+.font-script {
+  font-family: 'Caveat', cursive;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  @apply bg-bg-card backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
+}
+
+/* Hide scrollbar for Lenis */
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
